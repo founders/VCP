@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # start mongodb
 mongod --dbpath /opt/db
 

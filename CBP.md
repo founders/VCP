@@ -6,13 +6,17 @@ Building
 -------
 To build the docker container run
 
-`docker build -t vcp .`
+`docker build -t username/vcp .`
 
 Deploy
 -------
-To deploy, get the docker container and run the following.
+To deploy, get the docker using:
 
-`docker run -v ./db:/opt/db vcp`
+`docker pull vertoforce/vcp`
+
+Run the container using the following.
+
+`docker run --init -v /db:/opt/db vcp`
 
 
-This will use the local `./db` as the directory for the mongodb data
+This will use the local `/db` as the volume for the mongodb data

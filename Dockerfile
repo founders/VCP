@@ -15,3 +15,11 @@ RUN apt-get install -y python3 python3-pip
 
 #mongodb setup
 RUN mkdir /opt/db
+
+#Set up app
+WORKDIR /opt/vcp
+COPY ./ /opt/vcp
+
+
+#Start app
+CMD ["./start.sh"]
