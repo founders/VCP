@@ -22,7 +22,7 @@ def run_server(db_name='vcp', db_uri='mongodb://localhost:27017/vcp', debug=Fals
     mongo = PyMongo(app)
 
     # NOTE: debug must be false to allow running as a separate thread
-    app.run(debug=debug)
+    app.run(debug=debug,host="0.0.0.0")
 
 
 # NOTE: This will also run if run_server is created as a top-level process
