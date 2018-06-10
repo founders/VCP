@@ -16,7 +16,7 @@ To deploy, get the docker using:
 
 Run the container using the following.
 
-`docker run --init -v /db:/opt/db vcp`
+`docker run --init -v /db:/opt/db -p 5000:5000 vcp`
 
 
 This will use the local `/db` as the volume for the mongodb data

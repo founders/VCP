@@ -20,6 +20,11 @@ RUN mkdir /opt/db
 WORKDIR /opt/vcp
 COPY ./ /opt/vcp
 
+#Install python dependencies
+RUN pip3 install -r requirements.txt
+
+
+
 
 #Start app
 CMD ["./start.sh"]
