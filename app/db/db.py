@@ -54,6 +54,24 @@ if __name__ == "__main__":
     mongo = PyMongo(app)
 
     with app.app_context():
-
+        # Test adding startups
         request_json = {"name": "Menu3"}
         print("Added startup: " + str(add_startup(mongo, request_json)))
+        request_json = {"name": "Menu3"}
+        print("Added startup: " + str(add_startup(mongo, request_json)))  # Should fail: duplicate
+        request_json = {"name": "Vitrix Health"}
+        print("Added startup: " + str(add_startup(mongo, request_json)))
+
+        # Test updating startups
+        request_json = {"name": "Menu3", "new_name": "Agrimy"}
+        print("Updated startup: " + str(update_startup(mongo, request_json)))
+        request_json = {"name": "Vitrix Health", "new_name": "Agrimy"}
+        print("Updated startup: " + str(update_startup(mongo, request_json)))  # Should fail: duplicate
+
+        # Test removing startups
+        request_json = {"name": "Agrimy"}
+        print("Removed startup: " + str(remove_startup(mongo, request_json)))
+        request_json = {"name": "Vitrix Health"}
+        print("Removed startup: " + str(remove_startup(mongo, request_json)))
+        request_json = {"name": "Menu3"}
+        print("Removed startup: " + str(remove_startup(mongo, request_json)))  # Should fail: doesn't exist
