@@ -11,6 +11,10 @@ from pprint import pprint
 
 
 
+# Retrieves all startups on the platform
+def get_all_startups(mongo):
+    return list(mongo.db.startups.find())
+
 # Adds a new startup to the platform
 def add_startup(mongo, request_json):
     startup = mongo.db.startups.find_one({"name": request_json["name"]})
@@ -61,6 +65,9 @@ if __name__ == "__main__":
         print("Added startup: " + str(add_startup(mongo, request_json)))  # Should fail: duplicate
         request_json = {"name": "Vitrix Health"}
         print("Added startup: " + str(add_startup(mongo, request_json)))
+
+        # Test retrieving startups
+        pprint(get_all_startups(mongo))
 
         # Test updating startups
         request_json = {"name": "Menu3", "new_name": "Agrimy"}
