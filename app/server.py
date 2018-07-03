@@ -4,18 +4,30 @@ from flask import Flask, jsonify, request, json, abort, render_template
 from flask_pymongo import PyMongo
 from pprint import pprint
 
-from db.db import get_all_startups
+from db.utilities import get_all_startups
 
 app = Flask(__name__)
 
 
 # ROUTING
 
-# Currently only populates a table of rates
+# Serves homepage
 @app.route("/")
 def main():
     startups = get_all_startups(app.config['MONGO_INSTANCE'])
     return render_template('home.html', startups=startups)
+
+
+
+# AJAX
+
+# Serves homepage
+@app.route("/data/startups/")
+def fetch_startups():
+    startups = get_all_startups(app.config['MONGO_INSTANCE'])
+    startups_cleaned = [{'name': startup['name']} for startup in startups]
+    return jsonify({'startups': startups_cleaned})
+
 
 
 # MISCELLANIOUS
